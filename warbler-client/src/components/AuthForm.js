@@ -19,8 +19,11 @@ class AuthForm extends Component {
   handleSubmit = e=> {
     e.preventDefault();
     const authType = this.props.signUp ? "signup" : "signin";
-    this.props.onAuth(authType, this.state).then(()=>{
-      console.log("logged in!");
+    this.props.onAuth(authType, this.state)
+    .then(()=>{
+      this.props.history.push("/");//react router
+    }).catch(()=>{
+      return;
     });
   };
 
@@ -62,7 +65,7 @@ class AuthForm extends Component {
               />
               {signUp && (
                   <div>
-                    <label htmlFor="username">E-mail</label>
+                    <label htmlFor="username">Username</label>
                     <input
                         autoComplete="off"
                         className="form-control"

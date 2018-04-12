@@ -11,7 +11,7 @@ export default (state = DEFAULT_STATE, action) => {
             return {
                 // turn empty object into false or if there are keys, true
                 isAuthenticated: !!Object.keys(action.user).length,
-                //equal to isAuthenticated: !!Object.keys(action.user).length > 0
+                //equal to isAuthenticated: Object.keys(action.user).length > 0
                 //equal to use Boolean()
                 user: action.user
             };

@@ -32,7 +32,7 @@ messageSchema.pre('remove', async function(next){
     }catch(err){
         return next(err);
     }
-})
+});
 
 const Message = mongoose.model("Message", messageSchema);
 module.exports = Message;
