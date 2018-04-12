@@ -5,14 +5,17 @@ import Homepage from "../components/Homepage";
 import AuthForm from "../components/AuthForm";
 import {authUser} from "../store/actions/auth";
 import {removeError} from "../store/actions/errors";
+import withAuth from "../hocs/withAuth"
+import MessageForm from "../containers/MessageForm"
 
 
 const Main = (props) =>{
-    const {authUser, errors, removeError} = props;
+    const {authUser, errors, removeError, currentUser} = props;
     return (
         <div className="container">
             <Switch>
-                <Route exact path="/" render={props => <Homepage {...props}/>} />
+                <Route exact path="/" 
+                render={props => <Homepage currentUser={currentUser} {...props}/>} />
                 <Route exact path="/signin" render={props => {
                     return(
                         <AuthForm
@@ -38,6 +41,10 @@ const Main = (props) =>{
                         />
                     )
                 }} />
+                <Route 
+                    path="/users/:id/messages/new"
+                    component={withAuth(MessageForm)}    
+                />
             </Switch>
         </div>
     );
