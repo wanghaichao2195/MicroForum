@@ -22,7 +22,13 @@ const unserSchema = new mongoose.Schema({
     messages:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Message'
-    }]
+    }],
+    resetPasswordToken:{
+        type:String
+    },
+    resetPasswordExpires:{
+        type:Date
+    }
 
 
 });
