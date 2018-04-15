@@ -10,7 +10,8 @@ class MessageList extends Component{
     render(){
         const { messages, removeMessage, currentUser } = this.props
         let MessageList = messages.map(m =>(
-            <MessageItem 
+            <MessageItem
+                comments={m.comments}
                 key={m._id}
                 date={m.createAt}
                 text={m.text}

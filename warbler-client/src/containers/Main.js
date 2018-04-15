@@ -60,3 +60,5 @@ function mapStateToProps(state){
 
 export default withRouter(connect(mapStateToProps,{authUser,removeError})(Main)) // authUser dispatch
 //withRouter will allow us to actually get those props from the router to our component, these components will be able to use the history object to redirect 
+//withRouter可以包装任何自定义组件，将react-router 的 history,location,match 三个对象传入。 
+//https://blog.csdn.net/ISaiSai/article/details/78094556
