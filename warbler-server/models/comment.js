@@ -1,33 +1,29 @@
 const mongoose = require("mongoose");
 const User = require("./user");
 
-const messageSchema = new mongoose.Schema(
+const commentSchema = new mongoose.Schema(
   {
     text:{
         type: String,
         required:true,
-        maxLength:160
+        maxLength:500
     },
     user:{
         type: mongoose.Schema.Types.ObjectId,
         ref:"User"
-    },
-    comments:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"Comment"
-    }]
+    }
   },
     {
         timestamps:true
     }
 );
 
-messageSchema.pre('remove', async function(next){
+commentSchema.pre('remove', async function(next){
     try{
         //find a user
         let user = await User.findById(this.user)
         //remove the id of the message from their message list 
-        user.messages.remove(this.id); //completely synchronise just like splice
+        user.messages.comments.remove(this.id); //completely synchronise just like splice
         //save that user
         await user.save()
         //return next
@@ -38,5 +34,5 @@ messageSchema.pre('remove', async function(next){
     }
 });
 
-const Message = mongoose.model("Message", messageSchema);
-module.exports = Message;
+const Comment = mongoose.model("Comment",commentSchema);
+module.exports = Comment;

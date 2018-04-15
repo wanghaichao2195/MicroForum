@@ -8,7 +8,10 @@ const errorHandler = require("./handlers/error");
 const resetRoutes = require("./routes/pwReset");
 
 const authRoutes = require("./routes/auth");
+
 const messagesRoutes = require("./routes/messages");
+const commentRoutes = require("./routes/comments");
+
 const {loginRequired, ensureCorrectUser} = require("./middleware/auth");
 
 const db = require("./models");
@@ -24,13 +27,24 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.use("/api/auth", authRoutes);
+
 app.use(
   "/api/users/:id/messages", 
   loginRequired,
   ensureCorrectUser,
   messagesRoutes
+
   
 );
+
+app.use(
+  "/api/users/:id/messages/:message_id/comment", 
+  loginRequired,
+  ensureCorrectUser,
+  commentRoutes
+  
+);
+
 
 app.use("/api",resetRoutes);
 
@@ -48,6 +62,8 @@ app.get("/api/messages", loginRequired, async function(req, res ,next){
     return next(err);
   }
 })
+
+
 
 app.use(function(req, res, next) {
     let err = new Error("Not Found");
