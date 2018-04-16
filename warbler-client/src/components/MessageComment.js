@@ -1,46 +1,31 @@
 import React from "react";
 import Moment from "react-moment";
 import {Link} from "react-router-dom";
-import DefaultProfileImg from "../images/default-profile-image.jpg";
+
 
 const MessageItem = ({
-        date, 
-        profileImageUrl, 
-        text, 
-        username,
-        removeMessage,
-        isCorrectUser,
-        comments
+        comment,
+        isCorrectUser
     }) => (
     <div>
         <li className="list-group-item">
-            <img 
-                src={profileImageUrl || DefaultProfileImg} 
-                alt={username} 
-                height="100" 
-                width="100" 
-                className="timeline-image"
-            />
-            <div className="message-area">
-                <Link to="/">@{username} &nbsp;</Link>
+            <div className="message-area" style={{marginBottom:"-2px",wordWrap:"break-word",width:"500px"}}>
+                <Link to="/">@{comment.user.username} &nbsp;</Link>
                 <span className="text-muted">
-                    <Moment className="text-muted" format="Do MMM YYYY">
-                        {date}
+                    <Moment className="text-muted" format="Do MMM HH:mm">
+                        {comment.createdAt}
                     </Moment>
                 </span>
-                <p>{text}</p>
+                <p> {comment.text} </p> 
                 {isCorrectUser && (
-                    <a className="btn btn-danger btn-sm" onClick={removeMessage} >
+                    <a className="btn btn-sm btn-danger "  > 
                         Delete
                     </a>
                 )}
-                
+               
             </div>
             
         </li>
-        <div>
-                {comments[0].text}
-        </div>
     </div>
 
 );
