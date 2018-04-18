@@ -11,7 +11,15 @@ const messageSchema = new mongoose.Schema(
     user:{
         type: mongoose.Schema.Types.ObjectId,
         ref:"User"
+<<<<<<< HEAD
     }
+=======
+    },
+    comments:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Comment"
+    }]
+>>>>>>> addComments
   },
     {
         timestamps:true

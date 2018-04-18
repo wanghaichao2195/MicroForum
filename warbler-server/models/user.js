@@ -22,7 +22,17 @@ const unserSchema = new mongoose.Schema({
     messages:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Message'
+<<<<<<< HEAD
     }]
+=======
+    }],
+    resetPasswordToken:{
+        type:String
+    },
+    resetPasswordExpires:{
+        type:Date
+    }
+>>>>>>> addComments
 
 
 });

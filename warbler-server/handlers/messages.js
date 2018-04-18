@@ -22,6 +22,11 @@ exports.createMessage = async function(req, res, next){
         return next(err);
     }
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> addComments
 //get - /api/users/:id/messages/:message_id
 exports.getMessage = async function(req,res,next){
     try{
